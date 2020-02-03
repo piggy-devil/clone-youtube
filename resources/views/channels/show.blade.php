@@ -28,7 +28,7 @@
                                         </g></g> </svg>
                                     </div>
                                 @endif
-                                <img src="{{ $channel->image() }}" alt="">
+                                <img src="{{ $channel->image() }}" alt="" class="mx-auto d-block">
                             </div>
                         </div>
 
@@ -39,6 +39,12 @@
                             <p class="text-center">
                                 {{ $channel->description }}
                             </p>
+
+                            <div class="text-center">
+                                <button class="btn btn-danger">
+                                    Unsubscribe 7k
+                                </button>
+                            </div>
                         </div>
 
                         @if($channel->editable())
