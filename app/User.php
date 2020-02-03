@@ -104,4 +104,13 @@ class User extends Authenticatable implements HasMedia
             return "";
         return $this->avatar->getUrl('thumb');
     }
+
+    public function image()
+    {
+        if ($this->media->first()) {
+            return $this->media->first()->getFullUrl('thumb');
+        }
+
+        return null;
+    }
 }
