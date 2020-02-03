@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Model;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -63,5 +62,16 @@ class Channel extends Model implements HasMedia
         $this->addMediaConversion('thumb')
             ->width(100)
             ->height(100);
+    }
+
+    /**
+     * A channel has many subscriptions
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     *
+     */
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
     }
 }
