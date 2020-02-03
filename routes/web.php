@@ -17,5 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('profile', 'AvatarController@index')->name('profile');
+
+Route::resource('avatar', 'AvatarController');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('channels', 'ChannelController');

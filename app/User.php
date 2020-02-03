@@ -3,13 +3,17 @@
 namespace App;
 
 use Illuminate\Support\Str;
+use Spatie\MediaLibrary\File;
+use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    use Notifiable;
+    use Notifiable, HasMediaTrait;
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -62,5 +66,42 @@ class User extends Authenticatable
     public function channel()
     {
         return $this->hasOne(Channel::class);
+    }
+
+    // public function registerMediaCollections()
+    // {
+    //     $this->addMediaCollection('avatar')
+    //         // ->singleFile()
+    //         ->acceptsFile(function (File $file) {
+    //         return $file->mimeType == 'image/jpg';
+    //         });
+    // }
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('avatar')
+            // ->singleFile()
+            ->acceptsFile(function (File $file) {
+            return $file->mimeType == 'image/jpeg';
+            })
+            ->registerMediaConversions(function (Media $media) {
+                $this->addMediaConversion('card')
+                    ->width(400)
+                    ->height(300);
+
+                $this->addMediaConversion('thumb')
+                    ->width(100)
+                    ->height(100);
+            });
+    }
+
+    public function avatar() {
+        return $this->hasOne(Media::class, 'id', 'avatar_id');   // avatar_id (foreign Key)
+    }
+
+    public function getAvatarUrlAttribute() {
+        $user = auth()->user();
+        if ($user->avatar_id == null)
+            return "";
+        return $this->avatar->getUrl('thumb');
     }
 }
