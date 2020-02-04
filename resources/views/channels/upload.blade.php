@@ -25,6 +25,7 @@
                                     <div v-if="!video.thumbnail" class="d-flex justify-content-center align-items-center" style="height: 180px; color: white; font-size: 18px; background: #808080;">
                                             Loading thumbnail ...
                                     </div>
+                                    <img v-else :src="video.thumbnail" style="width: 100%;" alt="">
                                 </div>
 
                                 <div class="col-md-4">
