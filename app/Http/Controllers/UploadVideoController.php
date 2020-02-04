@@ -9,8 +9,17 @@ class UploadVideoController extends Controller
 {
     public function index(Channel $channel)
     {
+        // dd(phpinfo());
         return view('channels.upload', [
             'channel' => $channel
+        ]);
+    }
+
+    public function store(Channel $channel)
+    {
+        return $channel->videos()->create([
+            'title' => request()->title,
+            'path' => request()->video->store("channels/{$channel->id}")
         ]);
     }
 }
