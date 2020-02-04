@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\VideoController;
 use App\Http\Controllers\UploadVideoController;
 
 /*
@@ -24,6 +25,8 @@ Route::resource('avatar', 'AvatarController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('channels', 'ChannelController');
+
+Route::get('videos/{video}', [VideoController::class, 'show']);
 
 Route::middleware(['auth'])->group(function () {
     Route::post('channels/{channel}/videos', [UploadVideoController::class, 'store']);
