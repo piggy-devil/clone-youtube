@@ -2,7 +2,9 @@
 
 namespace App\Jobs\Videos;
 
+use FFMpeg;
 use App\Video;
+use FFMpeg\Format\Video\X264;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -12,6 +14,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 class ConvertForStreaming implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    public $video;
 
     /**
      * Create a new job instance.
@@ -30,6 +34,16 @@ class ConvertForStreaming implements ShouldQueue
      */
     public function handle()
     {
-        echo 'converted';
+       $low = (new X264('aac'))->setKiloBitrate(100);
+       $mid = (new X264('aac'))->setKiloBitrate(250);
+       $high = (new X264('aac'))->setKiloBitrate(500);
+
+       FFMpeg::fromDisk('local')
+            ->open($this->video->path)
+            ->exportForHLS()
+            ->addFormat($low)
+            ->addFormat($mid)
+            ->addFormat($high)
+            ->save("public/videos/{$this->video->id}/{$this->video->id}.m3u8");
     }
 }

@@ -165,7 +165,7 @@ return [
         /*
         * Package Service Providers...
         */
-        // Pbmedia\LaravelFFMpeg\FFMpegServiceProvider::class,
+        Pbmedia\LaravelFFMpeg\FFMpegServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -227,7 +227,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        // 'FFMpeg' => Pbmedia\LaravelFFMpeg\FFMpegFacade::class
+        'FFMpeg' => Pbmedia\LaravelFFMpeg\FFMpegFacade::class
 
     ],
 
