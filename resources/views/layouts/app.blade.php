@@ -19,7 +19,7 @@
 
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="bg-gray-400">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
