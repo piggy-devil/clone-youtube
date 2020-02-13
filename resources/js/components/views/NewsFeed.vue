@@ -6,10 +6,13 @@
 
 <script>
     import NewPost from '../posts/NewPost';
+    import Post from '../posts/Post';
+
     export default {
         name: "NewsFeed",
         components: {
             NewPost,
+            Post
         }
     }
 </script>
