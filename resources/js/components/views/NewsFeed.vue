@@ -10,6 +10,7 @@
 
     export default {
         name: "NewsFeed",
+
         components: {
             NewPost,
             Post
