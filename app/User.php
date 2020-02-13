@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\File;
+use Laravel\Passport\HasApiTokens;
 use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -13,7 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements HasMedia
 {
-    use Notifiable, HasMediaTrait;
+    use Notifiable, HasMediaTrait, HasApiTokens;
 
     /**
      * Indicates if the IDs are auto-incrementing.
