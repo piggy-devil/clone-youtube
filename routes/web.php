@@ -16,11 +16,16 @@ use App\Http\Controllers\UploadVideoController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
+
+Route::get('{any}', 'AppController@index')
+    ->where('any', '.*')
+    ->middleware('auth')
+    ->name('welcome');
 
 Route::get('profile', 'AvatarController@index')->name('profile');
 Route::resource('avatar', 'AvatarController');
