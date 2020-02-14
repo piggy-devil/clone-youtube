@@ -14,6 +14,22 @@
         components: {
             NewPost,
             Post
+        },
+
+        data: () => {
+            return {
+                posts: null,
+            }
+        },
+
+        mounted() {
+            axios.get('/api/posts')
+                .then(res => {
+                    this.posts = res.data;
+                })
+                .catch(error => {
+                    console.log('Unable to fetch posts');
+                });
         }
     }
 </script>
