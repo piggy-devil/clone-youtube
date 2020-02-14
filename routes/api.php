@@ -20,4 +20,5 @@ Route::middleware('auth:api')->group(function () {
        'users' => 'Api\UserController',
        '/users/{user}/posts' => 'Api\UserPostController',
    ]);
+   Route::get('auth-user', 'Api\AuthUserController@show');
 });
