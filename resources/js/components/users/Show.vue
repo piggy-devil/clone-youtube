@@ -24,6 +24,7 @@
 
 <script>
     import Post from '../../components/posts/Post';
+    import { mapGetters } from 'vuex';
 
     export default {
         name: "Show",
@@ -32,25 +33,21 @@
             Post
         },
 
+        computed: {
+            ...mapGetters({
+                user: 'user',
+            }),
+        },
+
         data: () => {
             return {
-                user: null,
                 posts: null,
-                userLoading: true,
                 postLoading: true,
             }
         },
         mounted() {
-            axios.get('/api/users/' + this.$route.params.userId)
-                .then(res => {
-                    this.user = res.data;
-                })
-                .catch(error => {
-                    console.log('Unable to fetch the user from the server.');
-                })
-                .finally(() => {
-                    this.userLoading = false;
-                });
+            this.$store.dispatch('fetchUser', this.$route.params.userId);
+
             axios.get('/api/users/' + this.$route.params.userId + '/posts')
                 .then(res => {
                     this.posts = res.data;
