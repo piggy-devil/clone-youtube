@@ -80,8 +80,8 @@ class Channel extends Model implements HasMedia
         return $this->hasMany(Video::class);
     }
 
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
+    // public function posts()
+    // {
+    //     return $this->hasMany(Post::class);
+    // }
 }

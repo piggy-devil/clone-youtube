@@ -55,7 +55,7 @@
             Channell() {
                 axios.get(`/channels/a7b538e8-5ef9-4f6d-ad5b-1357349292af`)
                     .then(response => {
-                        console.log(response)
+                        // console.log(response)
                         // this.subscriptions = [
                         //     ...this.subscriptions,
                         //     response.data

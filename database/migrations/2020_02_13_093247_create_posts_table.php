@@ -15,7 +15,8 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->uuid('id');
-            $table->uuid('channel_id');
+            $table->uuid('user_id');
+            // $table->uuid('channel_id');
             $table->bigInteger('views')->default(0);
             $table->string('thumbnail')->nullable();
             $table->text('description')->nullable();

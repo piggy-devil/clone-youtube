@@ -69,6 +69,11 @@ class User extends Authenticatable implements HasMedia
         return $this->hasOne(Channel::class);
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     // public function registerMediaCollections()
     // {
     //     $this->addMediaCollection('avatar')
