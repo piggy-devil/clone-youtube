@@ -1,5 +1,6 @@
 <?php
 
+use App\Post;
 use App\User;
 use App\Video;
 use App\Channel;
@@ -16,12 +17,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker\Factory::create();
+
         $user1 = factory(User::class)->create([
-            'email' => 'john@doe.com'
+            'email' => 'muupa@hotmail.com',
+            'name' => 'muupa'
         ]);
 
         $user2 = factory(User::class)->create([
-            'email' => 'jane@doe.com'
+            'email' => 'milin@hotmail.com',
+            'name' => 'milin'
         ]);
 
         $channel1 = factory(Channel::class)->create([
@@ -61,6 +66,14 @@ class DatabaseSeeder extends Seeder
         factory(Comment::class, 50)->create([
             'video_id' => $video->id,
             'comment_id' => $comment->id
+        ]);
+
+        factory(Post::class, 5)->create([
+            'user_id' => $user1->id,
+        ]);
+
+        factory(Post::class, 5)->create([
+            'user_id' => $user2->id,
         ]);
     }
 }
