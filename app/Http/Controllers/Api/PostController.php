@@ -16,10 +16,16 @@ class PostController extends Controller
     public function store()
     {
         $data = request()->validate([
-            'data.attributes.description' => '',
+            'description' => '',
+            // 'image' => '',
+            // 'width' => '',
+            // 'height' => '',
         ]);
 
-        $post = request()->user()->posts()->create($data['data']['attributes']);
+        $post = request()->user()->posts()->create([
+            'description' => $data['description'],
+            // 'image' => $image ?? null,
+        ]);
 
         return new PostResource($post);
     }
