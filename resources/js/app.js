@@ -1,9 +1,13 @@
 import Vue from 'vue';
+import VueTailwind from 'vue-tailwind'
+
 import router from './router';
 import App from './components/layouts/App';
 import store from './store/index';
 
 require('./bootstrap');
+
+Vue.use(VueTailwind)
 
 window.Vue = require('vue');
 
