@@ -25,6 +25,7 @@ class PostController extends Controller
         $post = request()->user()->posts()->create([
             'description' => $data['description'],
             // 'image' => $image ?? null,
+
         ]);
 
         return new PostResource($post);
