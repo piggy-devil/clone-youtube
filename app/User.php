@@ -74,6 +74,11 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(Post::class);
     }
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
     // public function registerMediaCollections()
     // {
     //     $this->addMediaCollection('avatar')
