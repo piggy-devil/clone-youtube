@@ -1,6 +1,8 @@
 <template>
     <div class="flex flex-col items-center py-4">
 
+        <Product />
+
         <NewPost />
 
         <p v-if="loading">Loading posts...</p>
@@ -12,13 +14,15 @@
 <script>
     import NewPost from '../posts/NewPost';
     import Post from '../posts/Post';
+    import Product from '../products/Product';
 
     export default {
         name: "NewsFeed",
 
         components: {
             NewPost,
-            Post
+            Post,
+            Product
         },
 
         data: () => {

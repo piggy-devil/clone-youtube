@@ -22,6 +22,10 @@ class Product extends JsonResource
                 'attributes' => [
                     'posted_by' => new UserResource($this->user),
                     'name' => $this->name,
+                    'buyprice' => $this->buyprice,
+                    'buyfrom' => $this->buyfrom,
+                    'sellprice' => $this->sellprice,
+                    'sellto' => $this->sellto,
                     'posted_at' => $this->created_at->diffForHumans(),
                 ]
             ],

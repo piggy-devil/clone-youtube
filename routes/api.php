@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->group(function () {
 
    Route::apiResources([
+       'products' => 'Api\ProductController',
        'posts' => 'Api\PostController',
        'users' => 'Api\UserController',
        '/users/{user}/posts' => 'Api\UserPostController',
