@@ -17,18 +17,18 @@ class ProductController extends Controller
     {
         $data = request()->validate([
             'name' => '',
-            // 'buyprice' => '',
-            // 'buyfrom' => '',
-            // 'sellprice' => '',
-            // 'sellto' => '',
+            'buyprice' => '',
+            'buyfrom' => '',
+            'sellprice' => '',
+            'sellto' => '',
         ]);
 
         $product = request()->user()->products()->create([
             'name'      => $data['name'],
-            // 'buyprice'  => $data['buyprice'],
-            // 'buyfrom'   => $data['buyfrom'],
-            // 'sellprice' => $data['sellprice'],
-            // 'sellto'    => $data['sellto'],
+            'buyprice'  => $data['buyprice'],
+            'buyfrom'   => $data['buyfrom'],
+            'sellprice' => $data['sellprice'],
+            'sellto'    => $data['sellto'],
         ]);
 
         return new ProductResource($product);
