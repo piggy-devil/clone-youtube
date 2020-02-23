@@ -5,13 +5,16 @@
 
         <NewPost />
 
-        <p v-if="loading">Loading posts...</p>
+        <!-- <p v-if="loading">Loading posts...</p> -->
+        <p v-if="newsStatus.postsStatus === 'loading'">Loading posts...</p>
 
-        <Post v-else v-for="post in posts.data" :key="post.data.post_id" :post="post" />
+        <!-- <Post v-else v-for="post in posts.data" :key="'post' + post.data.post_id" :post="post" /> -->
+        <Post v-else v-for="(post, postKey) in posts.data" :key="postKey" :post="post" />
     </div>
 </template>
 
 <script>
+    import { mapGetters } from 'vuex';
     import NewPost from '../posts/NewPost';
     import Post from '../posts/Post';
     import Product from '../products/Product';
@@ -25,23 +28,15 @@
             Product
         },
 
-        data: () => {
-            return {
-                posts: [],
-                loading: true
-            }
+        mounted() {
+            this.$store.dispatch('fetchNewsPosts');
         },
 
-        mounted() {
-            axios.get('/api/posts')
-                .then(res => {
-                    this.posts = res.data;
-                    this.loading = false;
-                })
-                .catch(error => {
-                    console.log('Unable to fetch posts');
-                    this.loading = false;
-                });
+        computed: {
+            ...mapGetters({
+                posts: 'posts',
+                newsStatus: 'newsStatus',
+            })
         }
     }
 </script>

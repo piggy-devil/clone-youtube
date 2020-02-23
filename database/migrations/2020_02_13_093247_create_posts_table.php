@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->bigInteger('views')->default(0);
             $table->string('thumbnail')->nullable();
             $table->text('description')->nullable();
-            $table->string('path')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
