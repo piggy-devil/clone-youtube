@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Post;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
 use App\Http\Resources\PostCollection;
@@ -11,7 +12,9 @@ class PostController extends Controller
 {
     public function index()
     {
-        return new PostCollection(request()->user()->posts);
+        $results = Post::orderBy('created_at', 'desc')->get();
+        // return new PostCollection(request()->user()->posts);
+        return new PostCollection($results);
     }
 
     public function store()
