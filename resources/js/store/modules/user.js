@@ -10,10 +10,7 @@ const getters = {
 };
 
 const actions = {
-    fetchAuthUser({
-        commit,
-        state
-    }) {
+    fetchAuthUser({commit, state}) {
         axios.get('/api/auth-user')
             .then(res => {
                 commit('setAuthUser', res.data);

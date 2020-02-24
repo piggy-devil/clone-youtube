@@ -31,6 +31,18 @@ const actions = {
                 commit('setPostsStatus', 'error');
             });
     },
+    fetchUserPosts({commit, dispatch}, userId) {
+        commit('setPostsStatus', 'loading');
+
+        axios.get('/api/users/' + userId + '/posts')
+            .then(res => {
+                commit('setPosts', res.data);
+                commit('setPostsStatus', 'success');
+            })
+            .catch(error => {
+                commit('setPostsStatus', 'error');
+            });
+    },
     postMessage({commit, state}) {
         commit('setPostsStatus', 'loading');
 
@@ -49,11 +61,11 @@ const mutations = {
     setPosts(state, posts) {
         state.posts = posts;
     },
-    updateMessage(state, msg) {
-        state.message = msg;
-    },
     setPostsStatus(state, status) {
         state.postsStatus = status;
+    },
+    updateMessage(state, msg) {
+        state.message = msg;
     },
     pushPost(state, data) {
         state.posts.data.unshift(data);
