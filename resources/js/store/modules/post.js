@@ -5,9 +5,9 @@ const state = {
 };
 
 const getters = {
-    posts: state => {
-        return state.posts;
-    },
+    // posts: state => {
+    //     return state.posts;
+    // },
     newsStatus: state => {
         return {
             postsStatus: state.postsStatus,

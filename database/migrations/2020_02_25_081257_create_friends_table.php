@@ -14,12 +14,14 @@ class CreateFriendsTable extends Migration
     public function up()
     {
         Schema::create('friends', function (Blueprint $table) {
-            $table->uuid('id');
+            // $table->uuid('id');
             $table->uuid('user_id');
             $table->uuid('friend_id');
             $table->tinyInteger('status')->nullable();
             $table->timestamp('confirmed_at')->nullable();
             $table->timestamps();
+
+            $table->unique(['user_id', 'friend_id']);
         });
     }
 
