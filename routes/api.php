@@ -16,11 +16,12 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->group(function () {
 
    Route::apiResources([
-       'products' => 'Api\ProductController',
-       'posts' => 'Api\PostController',
-       'users' => 'Api\UserController',
-       '/users/{user}/posts' => 'Api\UserPostController',
-        '/friend-request' => 'Api\FriendRequestController',
+      'products' => 'Api\ProductController',
+      'posts' => 'Api\PostController',
+      'users' => 'Api\UserController',
+      '/users/{user}/posts' => 'Api\UserPostController',
+      '/friend-request' => 'Api\FriendRequestController',
+      '/friend-request-response' => 'Api\FriendRequestResponseController',
    ]);
    Route::get('auth-user', 'Api\AuthUserController@show');
 });
