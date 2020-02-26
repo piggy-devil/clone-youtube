@@ -21,6 +21,7 @@ class Post extends JsonResource
                 'post_id' => $this->id,
                 'attributes' => [
                     'posted_by' => new UserResource($this->user),
+                    'likes' => new LikeCollection($this->likes),
                     'description' => $this->description,
                     'image' => $this->image == null ? null : url('storage/' . $this->image),
                     'posted_at' => $this->created_at->diffForHumans(),

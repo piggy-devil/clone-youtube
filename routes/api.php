@@ -18,6 +18,7 @@ Route::middleware('auth:api')->group(function () {
    Route::apiResources([
       'products' => 'Api\ProductController',
       'posts' => 'Api\PostController',
+      '/posts/{post}/like' => 'Api\PostLikeController',
       'users' => 'Api\UserController',
       '/users/{user}/posts' => 'Api\UserPostController',
       '/friend-request' => 'Api\FriendRequestController',
