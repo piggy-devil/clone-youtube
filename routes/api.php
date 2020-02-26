@@ -20,6 +20,7 @@ Route::middleware('auth:api')->group(function () {
        'posts' => 'Api\PostController',
        'users' => 'Api\UserController',
        '/users/{user}/posts' => 'Api\UserPostController',
+        '/friend-request' => 'Api\FriendRequestController',
    ]);
    Route::get('auth-user', 'Api\AuthUserController@show');
 });
