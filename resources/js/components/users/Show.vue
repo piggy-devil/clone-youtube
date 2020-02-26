@@ -13,12 +13,18 @@
                 <p class="text-2xl text-gray-100 ml-4">{{ user.data.attributes.name }}</p>
             </div>
 
+            <div class="absolute flex items-center bottom-0 right-0 mb-4 mr-12 z-20">
+                <button class="py-1 px-3 bg-gray-400 rounded"
+                    @click="$store.dispatch('sendFriendRequest', $route.params.userId)">{{ friendButtonText }}
+                </button>
+            </div>
+        </div>
+
             <p v-if="postLoading">Loading posts...</p>
 
             <Post v-else v-for="post in posts.data" :key="post.data.post_id" :post="post" />
 
             <p v-if=" ! postLoading && posts.data.length < 1">No posts found. Get started...</p>
-        </div>
     </div>
 </template>
 
@@ -36,6 +42,7 @@
         computed: {
             ...mapGetters({
                 user: 'user',
+                friendButtonText: 'friendButtonText',
             }),
         },
 
