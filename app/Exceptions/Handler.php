@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileUnacceptableForCollection;
 
@@ -53,6 +54,10 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof FileUnacceptableForCollection) {
             return redirect()->back()->with('error', 'Only JPEG file type is accepted');
+        }
+
+        if ($exception instanceof ValidationException) {
+            throw new ValidationErrorException(json_encode($exception->errors()));
         }
         return parent::render($request, $exception);
     }
