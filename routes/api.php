@@ -22,6 +22,7 @@ Route::middleware('auth:api')->group(function () {
       '/posts/{post}/comment' => 'Api\PostCommentController',
       'users' => 'Api\UserController',
       '/users/{user}/posts' => 'Api\UserPostController',
+      '/user-images' => 'Api\UserImageController',
       '/friend-request' => 'Api\FriendRequestController',
       '/friend-request-response' => 'Api\FriendRequestResponseController',
    ]);
