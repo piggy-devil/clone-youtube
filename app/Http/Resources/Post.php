@@ -2,8 +2,8 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\User as UserResource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class Post extends JsonResource
 {
@@ -22,6 +22,7 @@ class Post extends JsonResource
                 'attributes' => [
                     'posted_by' => new UserResource($this->user),
                     'likes' => new LikeCollection($this->likes),
+                    'comments' => new CommentPostCollection($this->comments),
                     'description' => $this->description,
                     'image' => $this->image == null ? null : url('storage/' . $this->image),
                     'posted_at' => $this->created_at->diffForHumans(),
