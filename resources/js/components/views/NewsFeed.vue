@@ -5,8 +5,11 @@
 
         <NewPost />
 
+
         <!-- <p v-if="loading">Loading posts...</p> -->
         <p v-if="newsStatus.postsStatus === 'loading'">Loading posts...</p>
+
+        <div v-else-if="posts == null">No posts found. Get started...</div>
 
         <!-- <Post v-else v-for="post in posts.data" :key="'post' + post.data.post_id" :post="post" /> -->
         <Post v-else v-for="(post, postKey) in posts.data" :key="postKey" :post="post" />

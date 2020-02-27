@@ -5,9 +5,9 @@ const state = {
 };
 
 const getters = {
-    // posts: state => {
-    //     return state.posts;
-    // },
+    posts: state => {
+        return state.posts;
+    },
     newsStatus: state => {
         return {
             postsStatus: state.postsStatus,
@@ -23,6 +23,18 @@ const actions = {
         commit('setPostsStatus', 'loading');
 
         axios.get('/api/posts')
+            .then(res => {
+                commit('setPosts', res.data);
+                commit('setPostsStatus', 'success');
+            })
+            .catch(error => {
+                commit('setPostsStatus', 'error');
+            });
+    },
+    fetchUserPosts({commit, dispatch}, userId) {
+        commit('setPostsStatus', 'loading');
+
+        axios.get('/api/users/' + userId + '/posts')
             .then(res => {
                 commit('setPosts', res.data);
                 commit('setPostsStatus', 'success');
@@ -50,6 +62,14 @@ const actions = {
             })
             .catch(error => {
             });
+    },
+    commentPost({commit, state}, data) {
+        axios.post('/api/posts/' + data.postId + '/comment', { body: data.body })
+            .then(res => {
+                commit('pushComments', { comments: res.data, postKey: data.postKey });
+            })
+            .catch(error => {
+            });
     }
 };
 
@@ -67,7 +87,10 @@ const mutations = {
         state.posts.data.unshift(data);
     },
     pushLikes(state, data) {
-        state.newsPosts.data[data.postKey].data.attributes.likes = data.likes;
+        state.posts.data[data.postKey].data.attributes.likes = data.likes;
+    },
+    pushComments(state, data) {
+        state.posts.data[data.postKey].data.attributes.comments = data.comments;
     }
 };
 
