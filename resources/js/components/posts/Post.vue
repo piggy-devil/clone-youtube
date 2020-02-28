@@ -45,6 +45,7 @@
                 <p class="ml-2">Comment</p>
             </button>
         </div>
+        <Comment :idPost="post.data.post_id"/>
         <div v-if="comments" class="border-t border-gray-400 p-4 pt-2">
             <div class="flex">
                 <input v-model="commentBody" type="text" name="comment" class="w-full pl-4 h-8 bg-gray-200 rounded-lg focus:outline-none" placeholder="Write your comment">
@@ -78,8 +79,13 @@
 </template>
 
 <script>
+    import Comment from './Comment'
     export default {
         name: "Post",
+
+        components: {
+            Comment
+        },
 
         props: [
             'post',

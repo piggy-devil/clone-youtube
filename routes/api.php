@@ -26,5 +26,7 @@ Route::middleware('auth:api')->group(function () {
       '/friend-request' => 'Api\FriendRequestController',
       '/friend-request-response' => 'Api\FriendRequestResponseController',
    ]);
+
+   Route::post('/comments/{post}', 'Api\CommentTestController@store');
    Route::get('auth-user', 'Api\AuthUserController@show');
 });

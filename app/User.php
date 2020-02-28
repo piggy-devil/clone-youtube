@@ -81,7 +81,7 @@ class User extends Authenticatable implements HasMedia
 
     public function posts()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
     }
 
     public function images()
@@ -163,6 +163,11 @@ class User extends Authenticatable implements HasMedia
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function commenttests()
+    {
+        return $this->hasMany(CommentTest::class);
     }
 
     public function toggleVote($entity, $type) {

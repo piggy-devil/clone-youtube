@@ -23,4 +23,9 @@ class Post extends Model
     {
         return $this->hasMany(CommentPost::class);
     }
+
+    public function commenttests()
+    {
+        return $this->hasMany(CommentTest::class)->whereNull('comment_id')->orderBy('created_at', 'DESC');
+    }
 }
