@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\CommentTest;
 use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,6 +12,11 @@ class CommentTestController extends Controller
     public function index(Post $post)
     {
         return $post->commenttests()->paginate(10);
+    }
+
+    public function show(CommentTest $comment)
+    {
+        return $comment->replies()->paginate(10);
     }
 
     public function store(Request $request, Post $post)

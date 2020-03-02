@@ -76,21 +76,22 @@
                 </div>
             </div>
         </div> -->
-        <Com :post="post"/>
+        <Comments :post="post.data.post_id"/>
+        <!-- <Coms :post="post"/> -->
     </div>
 </template>
 
 <script>
     import Comment from './Comment'
     import Comments from './Comments'
-    import Com from './Com'
+    import Coms from './Coms'
     export default {
         name: "Post",
 
         components: {
             Comment,
             Comments,
-            Com
+            Coms
         },
 
         props: [
