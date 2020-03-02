@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class CommentTestController extends Controller
 {
+    public function index(Post $post)
+    {
+        return $post->commenttests()->paginate(10);
+    }
+
     public function store(Request $request, Post $post)
     {
         // $data = request()->validate([

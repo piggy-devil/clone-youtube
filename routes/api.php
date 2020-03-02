@@ -28,5 +28,6 @@ Route::middleware('auth:api')->group(function () {
    ]);
 
    Route::post('/comments/{post}', 'Api\CommentTestController@store');
+   Route::get('/posts/{post}/comments', 'Api\CommentTestController@index');
    Route::get('auth-user', 'Api\AuthUserController@show');
 });
