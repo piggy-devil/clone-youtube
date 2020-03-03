@@ -30,5 +30,7 @@ Route::middleware('auth:api')->group(function () {
    Route::post('/comments/{post}', 'Api\CommentTestController@store');
    Route::get('/posts/{post}/comments', 'Api\CommentTestController@index');
    Route::get('/comments/{comment}/replies', 'Api\CommentTestController@show');
+   Route::post('/likes/{comment}/{type}', 'Api\LikeCommentController@like');
+   // Route::post('votes/{video}/{type}', [VoteController::class, 'vote']);
    Route::get('auth-user', 'Api\AuthUserController@show');
 });

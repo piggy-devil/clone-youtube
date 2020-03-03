@@ -4,6 +4,8 @@ namespace App;
 
 class CommentTest extends Model
 {
+    protected $with = ['user', 'likes'];
+
     protected $appends = ['repliesCount'];
 
     public function getRepliesCountAttribute()
@@ -25,4 +27,10 @@ class CommentTest extends Model
     {
         return $this->hasMany(CommentTest::class, 'comment_id')->whereNotNull('comment_id');
     }
+
+    public function likes()
+    {
+        return $this->morphMany(LikeComment::class, 'likeable');
+    }
+
 }

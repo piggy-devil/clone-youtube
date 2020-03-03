@@ -23,17 +23,23 @@
                     {{ comment.data.attributes.commented_at }}
                 </p>
             </div>
+        <likecomment :entity_id="comment.data.comment_id"/>
         </div>
     </div>
 </template>
 
 <script>
+    // import LikeComment from '../comments/LikeComment'
     export default {
         name: "Com",
 
         props: [
             'comment'
         ],
+
+        // comments: {
+        //     LikeComment
+        // },
 
         data: () => {
             return {

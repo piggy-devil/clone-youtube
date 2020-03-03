@@ -13,6 +13,7 @@
                     <p class="inline">
                         {{ reply.body }}
                     </p>
+                    <!-- <likecomment :entity_id="reply.user_id"/> -->
                 </div>
                 <div class="p-2 text-sm">
                     <!-- <a class="font-bold text-blue-700" href="#">
@@ -35,10 +36,16 @@
 </template>
 
 <script>
+    // import LikeComment from '../comments/LikeComment'
+
     export default {
         name: "Replies",
 
         props: ['comment'],
+
+        // comments: {
+        //     LikeComment
+        // },
 
         data() {
             return {
@@ -51,9 +58,9 @@
 
         methods: {
             fetchReplies() {
-                axios.get(`/api/comments/${this.comment.id}/replies`)
-                .then(({ data }) => {
-                // axios.get(this.replies.next_page_url).then(({ data }) => {
+                // axios.get(`/api/comments/${this.comment.id}/replies`)
+                // .then(({ data }) => {
+                axios.get(this.replies.next_page_url).then(({ data }) => {
                     this.replies = {
                         ...data,
                         data: [

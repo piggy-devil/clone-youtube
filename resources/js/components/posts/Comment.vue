@@ -19,6 +19,7 @@
                     {{ comment.data.attributes.body }}
                 </p> -->
             </div>
+            <likecomment :entity_id="comment.id"/>
             <div class="p-2 text-sm">
                 <a class="font-bold text-blue-700" href="#">
                     {{ like }}

@@ -2,6 +2,7 @@
     <div class="border-t border-gray-400 p-4 pt-2">
         <div v-for="(comment, index) in post.data.attributes.comments.data" :key="index">
             <Com :comment="comment"/>
+            <!-- <LikeComment :entity_id="comment.data.comment_id"/> -->
         </div>
 
         <div class="flex">
@@ -17,6 +18,7 @@
 
 <script>
     import Com from './Com';
+    // import LikeComment from '../comments/LikeComment'
 
     export default {
         name: "Coms",
@@ -26,7 +28,8 @@
         ],
 
         components: {
-            Com
+            Com,
+            // LikeComment
         },
 
         data: () => {
