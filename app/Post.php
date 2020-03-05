@@ -4,6 +4,7 @@ namespace App;
 
 class Post extends Model
 {
+    // protected $with = ['user', 'likeposts'];
     // public function channel()
     // {
     //     return $this->belongsTo(Channel::class);
@@ -12,6 +13,11 @@ class Post extends Model
     public function likes()
     {
         return $this->belongsToMany(User::class, 'likes', 'post_id', 'user_id');
+    }
+
+    public function likeposts()
+    {
+        return $this->morphMany(LikeComment::class, 'likeable');
     }
 
     public function user()

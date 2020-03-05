@@ -203,4 +203,22 @@ class User extends Authenticatable implements HasMedia
             ]);
         }
     }
+
+    public function toggleLike($entity, $type)
+    {
+        $like = $entity->likeposts->where('user_id', $this->id)->first();
+
+        if ($like) {
+            $like->update([
+                'type' => $type
+            ]);
+
+            return $like->refresh();
+        } else {
+            return $entity->likeposts()->create([
+                'type' => $type,
+                'user_id' => $this->id
+            ]);
+        }
+    }
 }

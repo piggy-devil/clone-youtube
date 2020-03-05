@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Post;
 use App\CommentTest;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -17,7 +18,7 @@ class LikeCommentController extends Controller
     {
         $entity = $this->getEntity($entityId);
 
-        return auth()->user()->toggleLikeComment($entity, $type);
+        return auth()->user()->toggleLike($entity, $type);
     }
 
     public function getEntity($entityId)
@@ -26,9 +27,9 @@ class LikeCommentController extends Controller
 
         if ($comment) return $comment;
 
-        // $comment = Comment::find($entityId);
+        $post = Post::find($entityId);
 
-        // if ($comment) return $comment;
+        if ($post) return $post;
 
         throw new ModelNotFoundException('Entity not found.');
     }

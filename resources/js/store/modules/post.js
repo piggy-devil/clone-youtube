@@ -63,6 +63,19 @@ const actions = {
             .catch(error => {
             });
     },
+    likeP({commit, state}, data) {
+        console.log(data.entity_id)
+        console.log(data.type)
+        axios.post(`/api/likes/${data.entity_id}/${data.type}`)
+        // axios.post('/api/likes/' + data.entity_id + '/up')
+        // axios.post('/api/posts/' + data.postId + '/like')
+            .then(res => {
+                // commit('pushLikes', { likes: res.data, postKey: data.postKey });
+                console.log(res);
+            })
+            .catch(error => {
+            });
+    },
     commentPost({commit, state}, data) {
         axios.post('/api/posts/' + data.postId + '/comment', { body: data.body })
             .then(res => {
